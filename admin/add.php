@@ -16,6 +16,15 @@
     <div class="main-wrapper">
         <?php include 'includes/header.php'?>
         <?php include 'includes/sidebar.php'?>
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-4 col-3">
+                        <h4 class="page-title">Patients</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php include 'includes/scripts.php'?>
 </body>
