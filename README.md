@@ -18,7 +18,7 @@ The Kano State Electronic Birth Registration System is a web-based application d
 Contributions are welcome! Please fork the repository, make your changes, and submit a pull request.
 
 ## License
-This project is licensed under the [MIT]([https://github.com](https://github.com/tafieda/kano-e-birth-system/edit/main/LICENSE)) License.
+This project is licensed under the [MIT](https://github.com/tafieda/kano-e-birth-system/edit/main/LICENSE) License.
 
 ## Acknowledgments
 - [Khalil Jamil Ahmad](https://github.com/tafieda) - Developer
