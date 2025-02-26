@@ -20,13 +20,34 @@
             <div class="content">
                 <div class="row">
                     <div class="col-sm-4 col-3">
-                        <h4 class="page-title">Patients</h4>
+                        <h4 class="page-title">List of All Application</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            
+                        <table class="table table-responsive table-border table-striped custom-table datatable mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Application Number</th>
+                                    <th>Name</th>
+                                    <th>Father's Name</th>
+                                    <th>Mother's Name</th>
+									<th>Status</th>
+									<th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>35</td>
+									<td>Leland Nico</td>
+									<td>Khalil Robinson</td>
+									<td>Jennifer Robinson</td>
+                                    <td><span class="custom-badge status-green">Verified</span></td>
+									<td><a href="#" class="action-icon" aria-expanded="false"><i class="fa fa-eye"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                 </div>
