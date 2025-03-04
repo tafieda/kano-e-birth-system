@@ -20,15 +20,16 @@
             <div class="content">
                 <div class="row">
                     <div class="col-sm-4 col-3">
-                        <h4 class="page-title">List of All Application</h4>
+                        <h4 class="page-title">New Application</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                        <table class="table table-responsive table-border table-striped custom-table datatable mb-0">
+                        <table class="table table-border table-striped custom-table datatable mb-0">
                             <thead>
                                 <tr>
+                                    <th>#</th>
                                     <th>Application Number</th>
                                     <th>Name</th>
                                     <th>Father's Name</th>
@@ -39,6 +40,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>1</td>
                                     <td>35</td>
 									<td>Leland Nico</td>
 									<td>Khalil Robinson</td>

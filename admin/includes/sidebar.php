@@ -7,15 +7,21 @@
                             <a href="index.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
                         <li class="submenu">
-							<a href="#"><i class="fa fa-id-card"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
+							<a href="#"><i class="fa fa-id-card"></i> <span> Birth Application </span> <span class="menu-arrow"></span></a>
 							<ul style="display: none;">
-								<li><a href="add.php"><i class="fa fa-plus"></i> <span> Employees </span> </a></li>
-								<li><a href="verify.php"><i class="fa fa-check"></i> <span> Employees </span> </a></li>
-                                <li><a href="reject.php"><i class="fa fa-times"></i> <span> Employees </span> </a></li>
-                                <li><a href="all.php"><i class="fa fa-th"></i> <span> Employees </span> </a></li>
+								<li><a href="add.php"><i class="fa fa-plus"></i> <span> New Application </span> </a></li>
+								<li><a href="verify.php"><i class="fa fa-check"></i> <span> Verified Application </span> </a></li>
+                                <li><a href="reject.php"><i class="fa fa-times"></i> <span> Rejected Application </span> </a></li>
+                                <li><a href="all.php"><i class="fa fa-th"></i> <span> All Application </span> </a></li>
 							</ul>
 						</li>
-						<li>
+                        <li>
+							<a href="reports.php"><i class="fa fa-flag-o"></i> <span> Reports </span> </a>
+						</li>
+                        <li>
+							<a href="search.php"><i class="fa fa-search"></i> <span> Search </span> </a>
+						</li>
+						<!--li>
                             <a href="doctors.html"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
                         </li>
                         <li>
@@ -165,7 +171,7 @@
                                     <a href="javascript:void(0);"><span>Level 1</span></a>
                                 </li>
                             </ul>
-                        </li>
+                        </li-->
                     </ul>
                 </div>
             </div>

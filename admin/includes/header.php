@@ -31,13 +31,13 @@
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="activities.html">View all Notifications</a>
+                            <a href="activities.php">View all Notifications</a>
                         </div>
                     </div>
                 </li>
-                <li class="nav-item dropdown d-none d-sm-block">
+                <!--li class="nav-item dropdown d-none d-sm-block">
                     <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-danger float-right">8</span></a>
-                </li>
+                </li-->
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
                         <span class="user-img"><img class="rounded-circle" src="assets/img/user.jpg" width="40" alt="Admin">
@@ -46,8 +46,8 @@
                     </a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="profile.php">My Profile</a>
-						<a class="dropdown-item" href="edit-profile.php">Edit Profile</a>
-						<a class="dropdown-item" href="settings.html">Settings</a>
+						<!--a class="dropdown-item" href="edit-profile.php">Edit Profile</a-->
+						<a class="dropdown-item" href="settings.php">Settings</a>
 						<a class="dropdown-item" href="login.php">Logout</a>
 					</div>
                 </li>
@@ -56,13 +56,13 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="profile.php">My Profile</a>
-                    <a class="dropdown-item" href="edit-profile.php">Edit Profile</a>
-                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <!--a class="dropdown-item" href="edit-profile.php">Edit Profile</a-->
+                    <a class="dropdown-item" href="settings.php">Settings</a>
                     <a class="dropdown-item" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
-        <div class="notification-box">
+            <!--div class="notification-box">
                 <div class="msg-sidebar notifications msg-noti">
                     <div class="topnav-dropdown-header">
                         <span>Messages</span>
@@ -90,4 +90,4 @@
                         <a href="chat.html">See all messages</a>
                     </div>
                 </div>
-            </div>
+            </div-->
