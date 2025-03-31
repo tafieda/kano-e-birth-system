@@ -1,4 +1,15 @@
-<div class="header">
+<?php
+session_start();
+error_reporting(0);
+include('includes/security.php');
+if (strlen($_SESSION['kano_ebs_aid']==0)) {
+  header('location:logout.php');
+  } else{
+
+
+
+  ?>
+        <div class="header">
             <div class="header-left">
                 <a href="index.php" class="logo">
                 <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Kano EBRS</span>
@@ -40,15 +51,28 @@
                 </li-->
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                    <?php
+$aid=$_SESSION['kano_ebs_aid'];
+$sql="SELECT * from  tbladmin where ID=:aid";
+$query = $dbh -> prepare($sql);
+$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $row)
+{               ?>
                         <span class="user-img"><img class="rounded-circle" src="assets/img/user.jpg" width="40" alt="Admin">
 							<span class="status online"></span></span>
-                        <span>Admin</span>
+                        <span><?php  echo $row->Ad;?> <?php  echo $row->LastName;?></span>
                     </a>
+                    <?php $cnt=$cnt+1;}} ?>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="profile.php">My Profile</a>
 						<!--a class="dropdown-item" href="edit-profile.php">Edit Profile</a-->
 						<a class="dropdown-item" href="settings.php">Settings</a>
-						<a class="dropdown-item" href="login.php">Logout</a>
+						<a class="dropdown-item" href="logout.php">Logout</a>
 					</div>
                 </li>
             </ul>
@@ -58,7 +82,7 @@
                     <a class="dropdown-item" href="profile.php">My Profile</a>
                     <!--a class="dropdown-item" href="edit-profile.php">Edit Profile</a-->
                     <a class="dropdown-item" href="settings.php">Settings</a>
-                    <a class="dropdown-item" href="login.php">Logout</a>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -91,3 +115,4 @@
                     </div>
                 </div>
             </div-->
+            <?php }  ?>

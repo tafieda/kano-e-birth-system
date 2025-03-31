@@ -1,3 +1,11 @@
+<?php
+session_start();
+error_reporting(0);
+include('includes/security.php');
+if (strlen($_SESSION['kano_ebs_aid']==0)) {
+  header('location:logout.php');
+  } 
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +34,18 @@
                 </div>
             </div>
             <div class="card-box profile-header">
+            <?php
+$aid=$_SESSION['kano_ebs_aid'];
+$sql="SELECT * from  tbladmin where ID=:aid";
+$query = $dbh -> prepare($sql);
+$query->bindParam(':aid',$aid,PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $row)
+{               ?>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="profile-view">
@@ -38,36 +58,37 @@
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="profile-info-left">
-                                            <h3 class="user-name m-t-0 mb-0">Khalil Jamil Ahmad</h3>
-                                            <small class="text-muted">Computer Science</small>
-                                            <div class="staff-id">Employee ID : DR-0001</div>
-                                            <div class="staff-msg"><a href="chat.php" class="btn btn-primary">Send Message</a></div>
+                                            <h3 class="user-name m-t-0 mb-0"><?php  echo $row->FirstName;?> <?php  echo $row->LastName;?></h3>
+                                            <small class="text-muted"><?php  echo $row->Rank;?></small>
+                                            <div class="staff-id">Employee ID : <?php  echo $row->ID_CODE;?> - <?php  echo $row->ID;?></div>
+                                            <!--div class="staff-msg"><a href="chat.php" class="btn btn-primary">Send Message</a></div-->
                                         </div>
                                     </div>
                                     <div class="col-md-7">
                                             <ul class="personal-info">
                                                 <li>
                                                     <span class="title">Phone:</span>
-                                                    <span class="text"><a href="#">0816-775-5485</a></span>
+                                                    <span class="text"><a href="tel:+234<?php  echo $row->MobileNumber;?>">0<?php  echo $row->MobileNumber;?></a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Email:</span>
-                                                    <span class="text"><a href="#">khaliljamil95@gmail.com</a></span>
+                                                    <span class="text"><a href="mailto:<?php  echo $row->Email;?>"><?php  echo $row->Email;?></a></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Birthday:</span>
-                                                    <span class="text">4th December</span>
+                                                    <span class="text"><?php  echo $row->DoB;?></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Address:</span>
-                                                    <span class="text">734 Engr. Rabiu Suleiman Bichi Street, Rimin Gata, KN</span>
+                                                    <span class="text"><?php  echo $row->Address;?></span>
                                                 </li>
                                                 <li>
                                                     <span class="title">Gender:</span>
-                                                    <span class="text">Male</span>
+                                                    <span class="text"><?php  echo $row->Gender;?></span>
                                                 </li>
                                             </ul>
                                         </div>
+                                        <?php $cnt=$cnt+1;}} ?>
                                 </div>
                             </div>
                         </div>
