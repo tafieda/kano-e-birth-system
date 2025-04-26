@@ -1,3 +1,14 @@
+<?php
+session_start();
+error_reporting(0);
+include('includes/security.php');
+if (strlen($_SESSION['kano_ebs_aid']==0)) {
+  header('location:logout.php');
+  } else{
+
+
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,25 +31,37 @@
                         <h4 class="page-title">Activities</h4>
                     </div>
                 </div>
+                <?php 
+                        $sql ="SELECT tblapplication.*,tbluser.FirstName,tbluser.LastName from  tblapplication join  tbluser on tblapplication.UserID=tbluser.ID where Status ='Pending' ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+?>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="activity">
                             <div class="activity-box">
                                 <ul class="activity-list">
+                                <?php
+foreach($results as $row)
+{ 
+
+  ?>   
                                     <li>
                                         <div class="activity-user">
-                                            <a href="profile.html" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
+                                            <a href="user.php?userid=<?php echo htmlentities ($row->ID);?>" title="<?php  echo $row->FirstName;?> <?php  echo $row->LastName;?>" data-toggle="tooltip" class="avatar">
                                                 <img alt="Lesley Grauer" src="assets/img/user.jpg" class="img-fluid rounded-circle">
                                             </a>
                                         </div>
                                         <div class="activity-content">
                                             <div class="timeline-content">
-                                                <a href="profile.html" class="name">Lesley Grauer</a> added new task <a href="#">Hospital Administration</a>
-                                                <span class="time">4 mins ago</span>
+                                                <a href="user.php?userid=<?php echo htmlentities ($row->ID);?>" class="name"><?php  echo $row->FirstName;?> <?php  echo $row->LastName;?></a> added new record <a href="detail.php?viewid=<?php echo htmlentities ($row->ID);?>"><?php  echo $row->FullName;?></a>
+                                                <span class="time"><?php  echo $row->DateofApply;?></span>
                                             </div>
                                         </div>
-										<a class="activity-delete" href="#" title="Delete">&times;</a>
+										
                                     </li>
+                                    <?php  } ?>
                                 </ul>
                             </div>
                         </div>
@@ -49,4 +72,4 @@
     </div>
     <?php include 'includes/scripts.php'?>
 </body>
-</html>
+</html><?php }  ?>

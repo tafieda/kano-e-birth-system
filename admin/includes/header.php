@@ -18,27 +18,42 @@ if (strlen($_SESSION['kano_ebs_aid']==0)) {
             <a href="javascript:void(0);" id="toggle_btn"><i class="fa fa-bars"></i></a>
             <a href="#sidebar" class="mobile_btn float-left" id="mobile_btn"><i class="fa fa-bars"></i></a>
             <ul class="nav user-menu float-right">
+            <?php 
+                        $sql ="SELECT tblapplication.*,tbluser.FirstName,tbluser.LastName from  tblapplication join  tbluser on tblapplication.UserID=tbluser.ID where Status ='Pending' ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$totneworder=$query->rowCount();
+?>
                 <li class="nav-item dropdown d-none d-sm-block">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"><span class="badge badge-pill bg-danger float-right">3</span></i></a>
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"><span class="badge badge-pill bg-danger float-right"><?php echo htmlentities($totneworder);?></span></i></a>
                     <div class="dropdown-menu notifications">
                         <div class="topnav-dropdown-header">
                             <span>Notifications</span>
                         </div>
                         <div class="drop-scroll">
                             <ul class="notification-list">
-                                <li class="notification-message">
-                                    <a href="#">
+                            <?php
+foreach($results as $row)
+{ 
+
+  ?>
+                            <li class="notification-message">      
+                                    <a href="detail.php?viewid=<?php echo htmlentities ($row->ID);?>">
+                                    
                                         <div class="media">
                                             <span class="avatar">
                                             <img alt="John Doe" src="assets/img/user.jpg" class="img-fluid rounded-circle">
                                             </span>
                                             <div class="media-body">
-                                                <p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
-                                                <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                                <p class="noti-details"><span class="noti-title"><?php  echo $row->FirstName;?> <?php  echo $row->LastName;?></span> added new record <span class="noti-title"><?php echo $row->ApplicationID;?></span></p>
+                                                <p class="noti-time"><span class="notification-time"><?php echo $row->DateofApply;?></span></p>
                                             </div>
                                         </div>
+                                        
                                     </a>
                                 </li>
+                                <?php  } ?>
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">

@@ -1,3 +1,14 @@
+<?php
+session_start();
+error_reporting(0);
+include('includes/security.php');
+if (strlen($_SESSION['kano_ebs_aid']==0)) {
+  header('location:logout.php');
+  } else{
+
+
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +34,8 @@
                         <h4 class="page-title">Between Dates Report</h4>
                     </div>
                 </div>
-                <div class="row filter-row">
-                    <div class="col-sm-6 col-md-3">
+                <form method="post" name="bwdatesreport" class="row filter-row">
+                    <!--div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus select-focus">
                             <label class="focus-label">Purchased By</label>
                             <select class="select floating">
@@ -33,12 +44,12 @@
                             <option value="">buyer 2</option>
                             </select>
                         </div>
-                    </div>
+                    </div-->
                     <div class="col-sm-6 col-md-3">
                         <div class="form-group form-focus">
                             <label class="focus-label">From</label>
                             <div class="cal-icon">
-                                <input type="text" class="form-control floating datetimepicker">
+                                <input type="text" id="fromdate" name="fromdate" class="form-control floating datetimepicker" required='true'>
                             </div>
                         </div>
                     </div>
@@ -46,20 +57,29 @@
                         <div class="form-group form-focus">
                             <label class="focus-label">To</label>
                             <div class="cal-icon">
-                                <input type="text" class="form-control floating datetimepicker">
+                                <input type="text" id="todate" name="todate" class="form-control floating datetimepicker" required='true'>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
-                        <a href="#" class="btn btn-success btn-block">Search</a>
+                        <button class="btn btn-success btn-block" type="submit" name="search">Search</button>
                     </div>
-                </div>
+                </form>
+                <?php
+                if(isset($_POST['search']))
+                { 
+$fdate=$_POST['fromdate'];
+$tdate=$_POST['todate'];
+
+?>
+               <h4 class="page-title text-success text-center">Report from <?php echo $fdate?> to <?php echo $tdate?></h4>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table table-striped custom-table mb-0 datatable">
                                 <thead>
                                     <tr>
+                                        <th data-field="state" data-checkbox="true"></th>
                                         <th>#</th>
                                         <th>Application Number</th>
                                         <th>Name</th>
@@ -70,15 +90,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                          
+                                          $sql="SELECT * from tblapplication where date(DateofApply) between '$fdate' and '$tdate'";
+                                          
+                                          $query = $dbh -> prepare($sql);
+                                          $query->execute();
+                                          $results=$query->fetchAll(PDO::FETCH_OBJ);
+                                          
+                                          $cnt=1;
+                                          if($query->rowCount() > 0)
+                                          {
+                                          foreach($results as $row)
+                                          {               ?>
                                     <tr>
-                                        <td>1</td>
-                                        <td>35</td>
-                                        <td>Leland Nico</td>
-                                        <td>Khalil Robinson</td>
-                                        <td>Jennifer Robinson</td>
-                                        <td><span class="custom-badge status-green">Verified</span></td>
-                                        <td><a href="#" class="action-icon" aria-expanded="false"><i class="fa fa-eye"></i></a></td>
+                                        <td></td>
+                                        <td><?php echo htmlentities($cnt);?></td>
+                                        <td><?php  echo htmlentities($row->ApplicationID);?></td>
+                                        <td><?php  echo htmlentities($row->FullName);?></td>
+                                        <td><?php  echo htmlentities($row->NameofFather);?></td>
+                                        <td><?php  echo htmlentities($row->NameofMother);?></td>
+                                        <?php if($row->Status=="Pending"){ ?>
+
+                                        <td><span class="custom-badge status-orange"><?php echo "Pending"; ?></span></td>
+                                        <?php } elseif($row->Status=="Verified"){  ?>
+                                        
+                                        <td><span class="custom-badge status-green"><?php echo "Verified"; ?></span></td>
+                                        <?php } else { ?>
+                                        
+                                        <td><span class="custom-badge status-red"><?php echo "Rejected"; ?></span></td>
+                                        <?php } ?>
+                                        
+                                        <td><a href="detail.php?viewid=<?php echo htmlentities ($row->ID);?>" class="action-icon" aria-expanded="false"><i class="fa fa-eye"></i></a></td>
                                     </tr>
+                                    <?php $cnt=$cnt+1;}}} ?> 
                                 </tbody>
                             </table>
                         </div>
@@ -89,4 +134,4 @@
     </div>
     <?php include 'includes/scripts.php'?>
 </body>
-</html>
+</html><?php } ?>

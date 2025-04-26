@@ -1,3 +1,14 @@
+<?php
+session_start();
+error_reporting(0);
+include('includes/security.php');
+if (strlen($_SESSION['kano_ebs_aid']==0)) {
+  header('location:logout.php');
+  } else{
+
+
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,15 +50,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>35</td>
-									<td>Leland Nico</td>
-									<td>Khalil Robinson</td>
-									<td>Jennifer Robinson</td>
-                                    <td><span class="custom-badge status-red">Rejected</span></td>
-									<td><a href="#" class="action-icon" aria-expanded="false"><i class="fa fa-eye"></i></a></td>
-                                </tr>
+                            <?php
+                                          
+                                          $sql="SELECT * from tblapplication where Status='Rejected'";
+                                          
+                                          $query = $dbh -> prepare($sql);
+                                          $query->execute();
+                                          $results=$query->fetchAll(PDO::FETCH_OBJ);
+                                          
+                                          $cnt=1;
+                                          if($query->rowCount() > 0)
+                                          {
+                                          foreach($results as $row)
+                                          {               ?>
+
+                            <tr>
+                                   
+                                   <td><?php echo htmlentities($cnt);?></td>
+                                   <td><?php  echo htmlentities($row->ApplicationID);?></td>
+                                   <td><?php  echo htmlentities($row->FullName);?></td>
+                                   <td><?php  echo htmlentities($row->NameofFather);?></td>
+                                   <td><?php  echo htmlentities($row->NameofMother);?></td>
+                                   <td><span class="custom-badge status-red"><?php echo  htmlentities ($row->Status); ?></span></td>
+                                   
+
+                                   <td><a href="detail.php?viewid=<?php echo htmlentities ($row->ID);?>" class="action-icon" aria-expanded="false"><i class="fa fa-eye"></i></a></td>
+                               </tr>
+                               <?php $cnt=$cnt+1;}} ?> 
                             </tbody>
                         </table>
                         </div>
@@ -58,4 +87,4 @@
     </div>
     <?php include 'includes/scripts.php'?>
 </body>
-</html>
+</html><?php }  ?>

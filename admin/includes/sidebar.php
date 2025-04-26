@@ -20,10 +20,10 @@
                         <li>
 							<a href="search.php"><i class="fa fa-search"></i> <span> Search </span> </a>
 						</li>
-						<!--li>
-                            <a href="doctors.html"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
+						<li>
+                            <a href="users.php"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
                         </li>
-                        <li>
+                        <!--li>
                             <a href="patients.html"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
                         </li>
                         <li>

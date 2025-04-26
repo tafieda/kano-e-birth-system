@@ -36,10 +36,10 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $totalnewapp=$query->rowCount();
 ?>
                         <div class="dash-widget">
-                            <span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+                            <span class="dash-widget-bg1"><i class="fa fa-database" aria-hidden="true"></i></span>
                             <div class="dash-widget-info text-right">
                                 <h3><?php echo htmlentities($totalnewapp);?></h3>
-                                <span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
+                                <span class="widget-title1">All Records <a href="all.php"><i class="fa fa-database" aria-hidden="true"></i></a></span>
                             </div>
                         </div>
                     </div>
@@ -52,10 +52,10 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $totalverapp=$query->rowCount();
 ?>
                         <div class="dash-widget">
-                            <span class="dash-widget-bg2"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                            <span class="dash-widget-bg2"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
                             <div class="dash-widget-info text-right">
                                 <h3><?php echo htmlentities($totalverapp);?></h3>
-                                <span class="widget-title2">Patients <i class="fa fa-check" aria-hidden="true"></i></span>
+                                <span class="widget-title2">Verified Records <a href="verify.php"><i class="fa fa-check" aria-hidden="true"></i></a></span>
                             </div>
                         </div>
                     </div>
@@ -68,10 +68,10 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $totalrejapp=$query->rowCount();
 ?>
                         <div class="dash-widget">
-                            <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
+                            <span class="dash-widget-bg3"><i class="fa fa-ban" aria-hidden="true"></i></span>
                             <div class="dash-widget-info text-right">
                                 <h3><?php echo htmlentities($totalrejapp);?></h3>
-                                <span class="widget-title3">Attend <i class="fa fa-check" aria-hidden="true"></i></span>
+                                <span class="widget-title3">Rejected Records <a href="reject.php"><i class="fa fa-ban" aria-hidden="true"></i></a></span>
                             </div>
                         </div>
                     </div>
@@ -84,10 +84,10 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $totalpendapp=$query->rowCount();
 ?>
                         <div class="dash-widget">
-                            <span class="dash-widget-bg4"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                            <span class="dash-widget-bg4"><i class="fa fa-hourglass" aria-hidden="true"></i></span>
                             <div class="dash-widget-info text-right">
                                 <h3><?php echo htmlentities($totalpendapp);?></h3>
-                                <span class="widget-title4">Pending <i class="fa fa-check" aria-hidden="true"></i></span>
+                                <span class="widget-title4">Pending Records <a href="add.php"><i class="fa fa-hourglass" aria-hidden="true"></i></a></span>
                             </div>
                         </div>
                     </div>
